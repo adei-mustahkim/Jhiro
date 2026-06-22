@@ -24,7 +24,7 @@ const baseMetadata: Metadata = {
   ],
   authors: [{ name: "Jhiro Digital Lab" }],
   creator: "Jhiro Digital Lab",
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://jhiro.id"),
+  metadataBase: new URL(process.env.NEXTAUTH_URL?.startsWith("http") ? process.env.NEXTAUTH_URL : `https://${process.env.NEXTAUTH_URL || "jhiro.id"}`),
   openGraph: {
     type: "website",
     locale: "id_ID",

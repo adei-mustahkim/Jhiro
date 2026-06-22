@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
               files: true,
             },
           },
-,
+        },
         orderBy: { createdAt: "desc" },
         skip: (page - 1) * pageSize,
         take: pageSize,

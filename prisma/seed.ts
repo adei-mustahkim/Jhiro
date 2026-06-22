@@ -211,29 +211,6 @@ async function main() {
   });
   console.log("Created Requirement Trackers");
 
-  // Create Revisions
-  await prisma.revision.create({
-    data: {
-      projectId: project3.id,
-      title: "Revisi Warna Theme Mobile App",
-      description: "Mohon diubah warna primary dari biru ke hijau muda untuk mencerminkan brand sustainability",
-      priority: "MEDIUM",
-      status: "IN_REVIEW",
-      handlerId: pm1.id,
-    },
-  });
-
-  await prisma.revision.create({
-    data: {
-      projectId: project5.id,
-      title: "Perbaikan Hero Section Animation",
-      description: "Animation di hero section terasa terlalu lambat, mohon dipercepat",
-      priority: "HIGH",
-      status: "OPEN",
-    },
-  });
-  console.log("Created Revisions");
-
   // Create Change Requests
   await prisma.changeRequest.create({
     data: {
@@ -312,15 +289,26 @@ async function main() {
   console.log("Created Invoices");
 
   // Create CMS Content
-  await prisma.cMSContent.create({
-    data: {
+  await prisma.cMSContent.upsert({
+    where: { section_locale: { section: "hero", locale: "ID" } },
+    update: {
+      content: {
+        headline: "Bangkitkan Bisnis Digital Anda",
+        subheadline: "Kami membantu bisnis membangun produk digital yang berdampak — dari strategi hingga eksekusi, dengan fokus pada hasil nyata.",
+        ctaPrimary: "Mulai Project",
+        ctaSecondary: "Lihat Portfolio",
+        heroImageUrl: "/images/hero-dashboard.png",
+      },
+    },
+    create: {
       section: "hero",
       locale: "ID",
       content: {
         headline: "Bangkitkan Bisnis Digital Anda",
-        subheadline: "Kami menciptakan solusi digital yang mengubah ide menjadi kenyataan. Website, aplikasi, dan sistem yang membantu bisnis Anda berkembang.",
+        subheadline: "Kami membantu bisnis membangun produk digital yang berdampak — dari strategi hingga eksekusi, dengan fokus pada hasil nyata.",
         ctaPrimary: "Mulai Project",
         ctaSecondary: "Lihat Portfolio",
+        heroImageUrl: "/images/hero-dashboard.png",
       },
     },
   });
@@ -354,37 +342,60 @@ async function main() {
     },
   });
 
-  await prisma.cMSContent.create({
-    data: {
+  await prisma.cMSContent.upsert({
+    where: { section_locale: { section: "services", locale: "ID" } },
+    update: {
+      content: {
+        title: "Layanan Kami",
+        items: [
+          {
+            title: "Website & Digital Presence",
+            description: "Website modern yang dioptimalkan untuk konversi, dengan desain yang mencerminkan brand Anda dan performa yang cepat.",
+            icon: "globe",
+          },
+          {
+            title: "Web Application",
+            description: "Aplikasi web custom untuk otomasi workflow, dashboard analytics, atau sistem internal bisnis Anda.",
+            icon: "monitor",
+          },
+          {
+            title: "Mobile Experience",
+            description: "Aplikasi mobile lintas platform dengan performa native dan pengalaman pengguna yang mulus.",
+            icon: "smartphone",
+          },
+          {
+            title: "UI/UX Research & Strategy",
+            description: "Riset pengguna, wireframing, hingga prototyping — memastikan produk Anda dibangun dengan fondasi yang tepat.",
+            icon: "chart",
+          },
+        ],
+      },
+    },
+    create: {
       section: "services",
       locale: "ID",
       content: {
         title: "Layanan Kami",
         items: [
           {
-            title: "Website Development",
-            description: "Website profesional, landing page, dan company profile dengan design modern.",
+            title: "Website & Digital Presence",
+            description: "Website modern yang dioptimalkan untuk konversi, dengan desain yang mencerminkan brand Anda dan performa yang cepat.",
             icon: "globe",
           },
           {
             title: "Web Application",
-            description: "Aplikasi web custom untuk kebutuhan bisnis spesifik Anda.",
+            description: "Aplikasi web custom untuk otomasi workflow, dashboard analytics, atau sistem internal bisnis Anda.",
             icon: "monitor",
           },
           {
-            title: "Mobile App",
-            description: "Aplikasi mobile untuk iOS dan Android dengan React Native.",
+            title: "Mobile Experience",
+            description: "Aplikasi mobile lintas platform dengan performa native dan pengalaman pengguna yang mulus.",
             icon: "smartphone",
           },
           {
-            title: "Dashboard & Analytics",
-            description: "Dashboard admin dan sistem analytics untuk monitoring bisnis.",
+            title: "UI/UX Research & Strategy",
+            description: "Riset pengguna, wireframing, hingga prototyping — memastikan produk Anda dibangun dengan fondasi yang tepat.",
             icon: "chart",
-          },
-          {
-            title: "E-commerce",
-            description: "Platform e-commerce lengkap dengan payment integration.",
-            icon: "shopping-cart",
           },
         ],
       },
@@ -447,6 +458,37 @@ async function main() {
       },
     },
   });
+
+  await prisma.cMSContent.upsert({
+    where: { section_locale: { section: "stats", locale: "ID" } },
+    update: {
+      content: {
+        stat1Value: "50",
+        stat1Label: "produk diluncurkan",
+        stat2Value: "30+",
+        stat2Label: "partner bisnis",
+        stat3Value: "3+ th",
+        stat3Label: "pengalaman kolektif",
+        stat4Value: "4.9/5",
+        stat4Label: "kepuasan partner",
+      },
+    },
+    create: {
+      section: "stats",
+      locale: "ID",
+      content: {
+        stat1Value: "50",
+        stat1Label: "produk diluncurkan",
+        stat2Value: "30+",
+        stat2Label: "partner bisnis",
+        stat3Value: "3+ th",
+        stat3Label: "pengalaman kolektif",
+        stat4Value: "4.9/5",
+        stat4Label: "kepuasan partner",
+      },
+    },
+  });
+
   console.log("Created CMS Content");
 
   // Create Articles
@@ -481,37 +523,49 @@ async function main() {
   });
   console.log("Created Articles");
 
-  // Create Portfolios
+  // Create Portfolios (mockup-matching data with local images)
   await prisma.portfolio.create({
     data: {
-      name: "Tech Vision Corporate Website",
-      slug: "tech-vision-corporate-website",
-      description: "Website company profile untuk perusahaan technology dengan fitur interaktif dan modern design.",
+      name: "Velora Commerce",
+      slug: "velora-commerce",
+      description: "Dashboard analytics e-commerce real-time untuk Velora Commerce, membantu tim memantau performa bisnis secara harian dengan visualisasi data yang intuitif.",
       technologies: ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
-      screenshots: ["https://picsum.photos/seed/techvision1/800/600"],
-      projectUrl: "https://techvision.co.id",
+      screenshots: ["/images/portfolio/velora-commerce.png"],
+      projectUrl: "https://velora-commerce.id",
       isFeatured: true,
     },
   });
 
   await prisma.portfolio.create({
     data: {
-      name: "Green Circle E-commerce",
-      slug: "green-circle-ecommerce",
-      description: "Platform e-commerce untuk produk ramah lingkungan dengan payment gateway terintegrasi.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      screenshots: ["https://picsum.photos/seed/greencircle1/800/600"],
+      name: "Nadi Corp",
+      slug: "nadi-corp",
+      description: "Sistem operasi internal untuk Nadi Corp dengan fitur workflow automation, task management, dan reporting dashboard.",
+      technologies: ["React", "Node.js", "PostgreSQL", "Redis"],
+      screenshots: ["/images/portfolio/nadi-operations.png"],
       isFeatured: true,
     },
   });
 
   await prisma.portfolio.create({
     data: {
-      name: "Fashion Hub Mobile App",
-      slug: "fashion-hub-mobile-app",
-      description: "Mobile application untuk shopping experience dengan fitur AR try-on.",
-      technologies: ["React Native", "Expo", "Firebase", "Redux"],
-      screenshots: ["https://picsum.photos/seed/fashionhub1/800/600"],
+      name: "Sora Living",
+      slug: "sora-living",
+      description: "Website digital presence Sora Living dengan desain minimalis yang mencerminkan brand sustainability mereka, dilengkapi blog dan e-commerce section.",
+      technologies: ["Next.js", "Framer Motion", "Sanity CMS", "Vercel"],
+      screenshots: ["/images/portfolio/sora-living.png"],
+      projectUrl: "https://sora-living.id",
+      isFeatured: false,
+    },
+  });
+
+  await prisma.portfolio.create({
+    data: {
+      name: "Arca Studio",
+      slug: "arca-studio",
+      description: "Studio portofolio Arca Studio dengan grid layout interaktif, animasi scroll-triggered, dan showcase proyek arsitektur 3D.",
+      technologies: ["Next.js", "Three.js", "GSAP", "Supabase"],
+      screenshots: ["/images/portfolio/arca-studio.png"],
       isFeatured: false,
     },
   });

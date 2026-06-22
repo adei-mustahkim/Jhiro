@@ -1,0 +1,349 @@
+{
+  "common": {
+    "appName": "Jhiro Digital Lab",
+    "loading": "Memuat...",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "create": "Buat",
+    "submit": "Kirim",
+    "search": "Cari",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "back": "Kembali",
+    "next": "Lanjut",
+    "previous": "Sebelumnya",
+    "yes": "Ya",
+    "no": "Tidak",
+    "all": "Semua",
+    "none": "Tidak ada",
+    "or": "atau",
+    "and": "dan",
+    "required": "Wajib diisi",
+    "optional": "Opsional",
+    "status": "Status",
+    "actions": "Aksi",
+    "view": "Lihat",
+    "close": "Tutup",
+    "confirm": "Konfirmasi",
+    "success": "Berhasil",
+    "error": "Terjadi kesalahan",
+    "warning": "Peringatan",
+    "info": "Informasi",
+    "noData": "Tidak ada data"
+  },
+  "nav": {
+    "home": "Beranda",
+    "services": "Layanan",
+    "portfolio": "Portfolio",
+    "caseStudy": "Studi Kasus",
+    "blog": "Blog",
+    "resources": "Resources",
+    "contact": "Hubungi Kami",
+    "login": "Masuk",
+    "logout": "Keluar",
+    "dashboard": "Dashboard",
+    "projects": "Project",
+    "invoices": "Invoice",
+    "profile": "Profil",
+    "settings": "Pengaturan"
+  },
+  "auth": {
+    "login": "Masuk",
+    "logout": "Keluar",
+    "register": "Daftar",
+    "forgotPassword": "Lupa password?",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Konfirmasi Password",
+    "name": "Nama",
+    "rememberMe": "Ingat saya",
+    "loginTitle": "Masuk ke akun Anda",
+    "loginDescription": "Masukkan email dan password untuk mengakses dashboard",
+    "invalidCredentials": "Email atau password salah",
+    "accountInactive": "Akun tidak aktif",
+    "sessionExpired": "Sesi berakhir, silakan masuk kembali"
+  },
+  "dashboard": {
+    "welcome": "Selamat Datang",
+    "overview": "Ringkasan",
+    "recentActivity": "Aktivitas Terbaru",
+    "quickActions": "Aksi Cepat",
+    "activeProjects": "Project Aktif",
+    "completedProjects": "Project Selesai",
+    "pendingInvoices": "Invoice Menunggu",
+    "totalRevenue": "Total Pendapatan"
+  },
+  "project": {
+    "title": "Project",
+    "all": "Semua Project",
+    "new": "Project Baru",
+    "name": "Nama Project",
+    "description": "Deskripsi",
+    "client": "Client",
+    "manager": "Project Manager",
+    "deadline": "Deadline",
+    "priority": "Prioritas",
+    "progress": "Progress",
+    "status": "Status",
+    "files": "File",
+    "revisions": "Revisi",
+    "changeRequests": "Change Request",
+    "chat": "Chat",
+    "requirement": "Requirement",
+    "timeline": "Timeline",
+    "overview": "Ringkasan",
+    "details": "Detail",
+    "myProjects": "Project Saya",
+    "createProject": "Buat Project",
+    "editProject": "Edit Project",
+    "archiveProject": "Arsipkan Project",
+    "statuses": {
+      "NEW": "Baru",
+      "REQUIREMENT_GATHERING": "Pengumpulan Kebutuhan",
+      "DESIGN": "Design",
+      "DEVELOPMENT": "Development",
+      "TESTING": "Testing",
+      "REVIEW": "Review",
+      "REVISION": "Revisi",
+      "COMPLETED": "Selesai",
+      "ARCHIVED": "Arsip"
+    },
+    "priorities": {
+      "LOW": "Rendah",
+      "MEDIUM": "Sedang",
+      "HIGH": "Tinggi",
+      "URGENT": "Urgent"
+    }
+  },
+  "client": {
+    "title": "Client",
+    "all": "Semua Client",
+    "new": "Client Baru",
+    "companyName": "Nama Perusahaan",
+    "phone": "Telepon",
+    "address": "Alamat",
+    "industry": "Industri",
+    "notes": "Catatan",
+    "createClient": "Buat Client",
+    "editClient": "Edit Client"
+  },
+  "revision": {
+    "title": "Revisi",
+    "all": "Semua Revisi",
+    "new": "Ajukan Revisi",
+    "revisionTitle": "Judul Revisi",
+    "description": "Deskripsi",
+    "priority": "Prioritas",
+    "attachments": "Lampiran",
+    "submitRevision": "Ajukan Revisi",
+    "statuses": {
+      "OPEN": "Terbuka",
+      "IN_REVIEW": "Sedang Di-review",
+      "IN_PROGRESS": "Sedang Dikerjakan",
+      "COMPLETED": "Selesai",
+      "APPROVED": "Disetujui"
+    }
+  },
+  "changeRequest": {
+    "title": "Change Request",
+    "all": "Semua Change Request",
+    "new": "Ajukan Change Request",
+    "crTitle": "Judul CR",
+    "description": "Deskripsi",
+    "type": "Tipe",
+    "estimatedCost": "Estimasi Biaya",
+    "submitCR": "Ajukan CR",
+    "statuses": {
+      "SUBMITTED": "Dikirim",
+      "REVIEWED": "Di-review",
+      "APPROVED": "Disetujui",
+      "REJECTED": "Ditolak",
+      "IN_PROGRESS": "Sedang Dikerjakan",
+      "COMPLETED": "Selesai"
+    },
+    "types": {
+      "new_feature": "Fitur Baru",
+      "new_page": "Halaman Baru",
+      "new_module": "Modul Baru",
+      "integration": "Integrasi"
+    }
+  },
+  "invoice": {
+    "title": "Invoice",
+    "all": "Semua Invoice",
+    "new": "Buat Invoice",
+    "invoiceNumber": "Nomor Invoice",
+    "amount": "Jumlah",
+    "dueDate": "Jatuh Tempo",
+    "paidAt": "Tanggal Bayar",
+    "pdf": "PDF",
+    "statuses": {
+      "DRAFT": "Draft",
+      "UNPAID": "Belum Bayar",
+      "PARTIAL": "Sebagian",
+      "PAID": "Lunas",
+      "OVERDUE": "Jatuh Tempo"
+    }
+  },
+  "requirement": {
+    "title": "Requirement",
+    "businessGoals": "Tujuan Bisnis",
+    "requestedFeatures": "Fitur yang Diminta",
+    "references": "Referensi",
+    "attachments": "Lampiran",
+    "statuses": {
+      "DRAFT": "Draft",
+      "APPROVED": "Disetujui",
+      "LOCKED": "Dikunci"
+    }
+  },
+  "file": {
+    "title": "File",
+    "upload": "Upload File",
+    "download": "Download",
+    "category": "Kategori",
+    "version": "Versi",
+    "categories": {
+      "SOURCE_CODE": "Source Code",
+      "ZIP": "ZIP",
+      "DOCUMENTATION": "Dokumentasi",
+      "VIDEO_TUTORIAL": "Video Tutorial",
+      "LINK": "Link",
+      "DATABASE_BACKUP": "Database Backup",
+      "OTHER": "Lainnya"
+    },
+    "versions": {
+      "V1": "V1",
+      "V2": "V2",
+      "V3": "V3",
+      "V4": "V4",
+      "V5": "V5",
+      "FINAL": "Final"
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "sendMessage": "Kirim Pesan",
+    "typeMessage": "Ketik pesan...",
+    "noMessages": "Belum ada pesan"
+  },
+  "cms": {
+    "title": "CMS",
+    "hero": "Hero",
+    "about": "Tentang",
+    "services": "Layanan",
+    "footer": "Footer",
+    "faq": "FAQ",
+    "contact": "Kontak",
+    "menu": "Menu"
+  },
+  "article": {
+    "title": "Artikel",
+    "all": "Semua Artikel",
+    "new": "Buat Artikel",
+    "publish": "Publikasi",
+    "draft": "Draft",
+    "statuses": {
+      "DRAFT": "Draft",
+      "PUBLISHED": "Dipublikasi",
+      "ARCHIVED": "Diarsip"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "all": "Semua Portfolio",
+    "new": "Tambah Portfolio",
+    "name": "Nama",
+    "description": "Deskripsi",
+    "technologies": "Teknologi",
+    "screenshots": "Screenshot",
+    "projectUrl": "URL Project"
+  },
+  "caseStudy": {
+    "title": "Studi Kasus",
+    "all": "Semua Studi Kasus",
+    "new": "Buat Studi Kasus",
+    "problem": "Problem",
+    "solution": "Solusi",
+    "result": "Hasil",
+    "metrics": "Metrik"
+  },
+  "resource": {
+    "title": "Resource",
+    "all": "Semua Resource",
+    "download": "Download"
+  },
+  "activity": {
+    "title": "Aktivitas",
+    "all": "Semua Aktivitas",
+    "login": "Login",
+    "logout": "Logout",
+    "projectCreated": "Project dibuat",
+    "projectUpdated": "Project diupdate",
+    "revisionCreated": "Revisi dibuat",
+    "fileUploaded": "File diupload"
+  },
+  "notification": {
+    "title": "Notifikasi",
+    "all": "Semua Notifikasi",
+    "markAllRead": "Tandai semua sudah dibaca",
+    "noNotifications": "Tidak ada notifikasi"
+  },
+  "seo": {
+    "title": "SEO",
+    "metaTitle": "Meta Title",
+    "metaDescription": "Meta Description",
+    "ogImage": "Open Graph Image",
+    "canonicalUrl": "Canonical URL"
+  },
+  "form": {
+    "required": "Field ini wajib diisi",
+    "invalidEmail": "Email tidak valid",
+    "invalidUrl": "URL tidak valid",
+    "minLength": "Minimal {min} karakter",
+    "maxLength": "Maksimal {max} karakter",
+    "minValue": "Nilai minimal {min}",
+    "maxValue": "Nilai maksimal {max}"
+  },
+  "pagination": {
+    "showing": "Menampilkan {from} - {to} dari {total}",
+    "page": "Halaman {page} dari {totalPages}",
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya"
+  },
+  "empty": {
+    "noProjects": "Belum ada project",
+    "noClients": "Belum ada client",
+    "noInvoices": "Belum ada invoice",
+    "noRevisions": "Belum ada revisi",
+    "noChangeRequests": "Belum ada change request",
+    "noArticles": "Belum ada artikel",
+    "noPortfolios": "Belum ada portfolio",
+    "noNotifications": "Tidak ada notifikasi",
+    "noActivity": "Tidak ada aktivitas",
+    "noSearchResults": "Tidak ada hasil pencarian"
+  },
+  "footer": {
+    "company": "Jhiro Digital Lab",
+    "tagline": "Studio produk digital untuk bisnis modern",
+    "quickLinks": "Link Cepat",
+    "services": "Layanan",
+    "resources": "Resources",
+    "contact": "Hubungi Kami",
+    "followUs": "Ikuti Kami",
+    "copyright": "Hak cipta dilindungi"
+  },
+  "cta": {
+    "startProject": "Mulai Project",
+    "viewPortfolio": "Lihat Portfolio",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "getStarted": "Mulai Sekarang",
+    "contactUs": "Hubungi Kami",
+    "downloadNow": "Download Sekarang"
+  }
+}

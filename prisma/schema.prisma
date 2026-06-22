@@ -1,0 +1,477 @@
+// ============================================
+// JHIRO DIGITAL LAB - PRISMA SCHEMA
+// PostgreSQL + Prisma ORM
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============== ENUMS ==============
+
+enum Role {
+  SUPER_ADMIN
+  PROJECT_MANAGER
+  CLIENT
+}
+
+enum ProjectStatus {
+  NEW
+  REQUIREMENT_GATHERING
+  DESIGN
+  DEVELOPMENT
+  TESTING
+  REVIEW
+  REVISION
+  COMPLETED
+  ARCHIVED
+}
+
+enum ProjectPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum RequirementStatus {
+  DRAFT
+  APPROVED
+  LOCKED
+}
+
+enum RevisionStatus {
+  OPEN
+  IN_REVIEW
+  IN_PROGRESS
+  COMPLETED
+  APPROVED
+}
+
+enum RevisionPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ChangeRequestStatus {
+  SUBMITTED
+  REVIEWED
+  APPROVED
+  REJECTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  UNPAID
+  PARTIAL
+  PAID
+  OVERDUE
+}
+
+enum FileCategory {
+  SOURCE_CODE
+  ZIP
+  DOCUMENTATION
+  VIDEO_TUTORIAL
+  LINK
+  DATABASE_BACKUP
+  OTHER
+}
+
+enum FileVersion {
+  V1
+  V2
+  V3
+  V4
+  V5
+  FINAL
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ResourceType {
+  TEMPLATE
+  EBOOK
+  GUIDE
+  CHECKLIST
+}
+
+enum Locale {
+  ID
+  EN
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  BOTH
+}
+
+// ============== CORE: USER & CLIENT ==============
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  passwordHash  String?
+  image         String?
+  role          Role     @default(CLIENT)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  client        Client?  @relation("UserClient")
+
+  projectsManaged   Project[]          @relation("ProjectManager")
+  revisionsHandled  Revision[]         @relation("RevisionHandler")
+  articlesAuthored  Article[]          @relation("ArticleAuthor")
+  activityLogs      ActivityLog[]
+  chatMessages      ChatMessage[]
+  notifications     Notification[]
+  uploadedFiles     ProjectFile[]      @relation("FileUploader")
+
+  @@map("users")
+}
+
+model Client {
+  id          String    @id @default(uuid())
+  userId      String    @unique
+  user        User      @relation("UserClient", fields: [userId], references: [id], onDelete: Cascade)
+  companyName String
+  phone       String?
+  address     String?
+  industry    String?
+  notes       String?
+  projects    Project[]
+  invoices    Invoice[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@index([deletedAt])
+  @@map("clients")
+}
+
+// ============== PROJECT MANAGEMENT ==============
+
+model Project {
+  id              String          @id @default(uuid())
+  name            String
+  description     String?
+  clientId        String
+  client          Client          @relation(fields: [clientId], references: [id])
+  managerId       String?
+  manager         User?           @relation("ProjectManager", fields: [managerId], references: [id])
+  deadline        DateTime?
+  priority        ProjectPriority @default(MEDIUM)
+  status          ProjectStatus   @default(NEW)
+  progress        Int             @default(0)
+
+  requirement     RequirementTracker?
+  revisions       Revision[]
+  changeRequests  ChangeRequest[]
+  files           ProjectFile[]
+  invoices        Invoice[]
+  chatThread      ChatThread?
+  activityLogs    ActivityLog[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  @@index([clientId])
+  @@index([status])
+  @@index([deletedAt])
+  @@map("projects")
+}
+
+model RequirementTracker {
+  id                String             @id @default(uuid())
+  projectId         String             @unique
+  project           Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  businessGoals     String
+  requestedFeatures String
+  references        String?
+  attachments       String[]
+  status            RequirementStatus  @default(DRAFT)
+  lockedAt          DateTime?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@map("requirement_trackers")
+}
+
+model Revision {
+  id          String           @id @default(uuid())
+  projectId   String
+  project     Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  priority    RevisionPriority @default(MEDIUM)
+  attachments String[]
+  status      RevisionStatus   @default(OPEN)
+  handlerId   String?
+  handler     User?            @relation("RevisionHandler", fields: [handlerId], references: [id])
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([projectId])
+  @@map("revisions")
+}
+
+model ChangeRequest {
+  id            String               @id @default(uuid())
+  projectId     String
+  project       Project              @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title         String
+  description   String
+  type          String
+  estimatedCost Decimal?             @db.Decimal(14, 2)
+  status        ChangeRequestStatus  @default(SUBMITTED)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+
+  @@index([projectId])
+  @@map("change_requests")
+}
+
+model ProjectFile {
+  id          String       @id @default(uuid())
+  projectId   String
+  project     Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  category    FileCategory
+  version     FileVersion  @default(V1)
+  fileName    String
+  fileUrl     String
+  fileSize    Int?
+  uploadedById String
+  uploadedBy  User         @relation("FileUploader", fields: [uploadedById], references: [id])
+  createdAt   DateTime    @default(now())
+
+  @@index([projectId])
+  @@map("project_files")
+}
+
+// ============== CHAT ==============
+
+model ChatThread {
+  id        String        @id @default(uuid())
+  projectId String        @unique
+  project   Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+  createdAt DateTime      @default(now())
+
+  @@map("chat_threads")
+}
+
+model ChatMessage {
+  id          String     @id @default(uuid())
+  threadId    String
+  thread      ChatThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  senderId    String
+  sender      User       @relation(fields: [senderId], references: [id])
+  message     String
+  mentions    String[]
+  attachments String[]
+  createdAt   DateTime   @default(now())
+
+  @@index([threadId])
+  @@map("chat_messages")
+}
+
+// ============== INVOICE ==============
+
+model Invoice {
+  id            String        @id @default(uuid())
+  invoiceNumber String        @unique
+  clientId      String
+  client        Client       @relation(fields: [clientId], references: [id])
+  projectId     String?
+  project       Project?     @relation(fields: [projectId], references: [id])
+  amount        Decimal       @db.Decimal(14, 2)
+  description   String?
+  dueDate       DateTime
+  status        InvoiceStatus @default(DRAFT)
+  pdfUrl        String?
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([clientId])
+  @@index([projectId])
+  @@index([status])
+  @@map("invoices")
+}
+
+// ============== CMS: BLOG / PORTFOLIO / CASE STUDY / RESOURCE ==============
+
+model Article {
+  id          String        @id @default(uuid())
+  title       String
+  slug        String        @unique
+  content     String
+  excerpt     String?
+  category    String?
+  tags        String[]
+  thumbnail   String?
+  authorId    String
+  author      User          @relation("ArticleAuthor", fields: [authorId], references: [id])
+  status      ArticleStatus @default(DRAFT)
+  locale      Locale        @default(ID)
+  seoMeta     SEOMeta?
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deletedAt   DateTime?
+
+  @@index([slug])
+  @@index([status])
+  @@index([authorId])
+  @@index([deletedAt])
+  @@map("articles")
+}
+
+model Portfolio {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String
+  technologies String[]
+  screenshots String[]
+  projectUrl  String?
+  isFeatured  Boolean  @default(false)
+  seoMeta     SEOMeta?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  @@index([isFeatured])
+  @@index([deletedAt])
+  @@map("portfolios")
+}
+
+model CaseStudy {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  problem     String
+  solution    String
+  result      String
+  screenshots String[]
+  metrics     Json?
+  seoMeta     SEOMeta?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  @@map("case_studies")
+}
+
+model Resource {
+  id              String       @id @default(uuid())
+  title          String
+  description    String?
+  type           ResourceType
+  fileUrl        String
+  category       String?
+  downloadCount  Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@map("resources")
+}
+
+// ============== CMS GENERIC CONTENT ==============
+
+model CMSContent {
+  id        String   @id @default(uuid())
+  section   String
+  locale    Locale   @default(ID)
+  content   Json
+  updatedAt DateTime @updatedAt
+
+  @@unique([section, locale])
+  @@map("cms_contents")
+}
+
+model SEOMeta {
+  id              String   @id @default(uuid())
+  pageKey         String   @unique
+  metaTitle       String
+  metaDescription String
+  ogImage         String?
+  canonicalUrl    String?
+
+  articleId       String?    @unique
+  article         Article?   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  portfolioId     String?    @unique
+  portfolio       Portfolio? @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  caseStudyId     String?    @unique
+  caseStudy       CaseStudy? @relation(fields: [caseStudyId], references: [id], onDelete: Cascade)
+
+  updatedAt       DateTime @updatedAt
+
+  @@map("seo_metas")
+}
+
+// ============== LEAD / CONTACT ==============
+
+model Lead {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  message   String
+  source    String?
+  createdAt DateTime @default(now())
+
+  @@map("leads")
+}
+
+// ============== ACTIVITY LOG ==============
+
+model ActivityLog {
+  id        String    @id @default(uuid())
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id])
+  projectId String?
+  project   Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  activity  String
+  metadata  Json?
+  ipAddress String?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([projectId])
+  @@map("activity_logs")
+}
+
+// ============== NOTIFICATION ==============
+
+model Notification {
+  id        String              @id @default(uuid())
+  userId    String
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  channel   NotificationChannel @default(IN_APP)
+  isRead    Boolean             @default(false)
+  link      String?
+  createdAt DateTime            @default(now())
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}

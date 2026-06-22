@@ -1,0 +1,349 @@
+{
+  "common": {
+    "appName": "Jhiro Digital Lab",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "none": "None",
+    "or": "or",
+    "and": "and",
+    "required": "Required",
+    "optional": "Optional",
+    "status": "Status",
+    "actions": "Actions",
+    "view": "View",
+    "close": "Close",
+    "confirm": "Confirm",
+    "success": "Success",
+    "error": "An error occurred",
+    "warning": "Warning",
+    "info": "Information",
+    "noData": "No data"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "caseStudy": "Case Study",
+    "blog": "Blog",
+    "resources": "Resources",
+    "contact": "Contact Us",
+    "login": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "invoices": "Invoices",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "forgotPassword": "Forgot password?",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name",
+    "rememberMe": "Remember me",
+    "loginTitle": "Sign in to your account",
+    "loginDescription": "Enter your email and password to access the dashboard",
+    "invalidCredentials": "Invalid email or password",
+    "accountInactive": "Account is inactive",
+    "sessionExpired": "Session expired, please login again"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "overview": "Overview",
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions",
+    "activeProjects": "Active Projects",
+    "completedProjects": "Completed Projects",
+    "pendingInvoices": "Pending Invoices",
+    "totalRevenue": "Total Revenue"
+  },
+  "project": {
+    "title": "Project",
+    "all": "All Projects",
+    "new": "New Project",
+    "name": "Project Name",
+    "description": "Description",
+    "client": "Client",
+    "manager": "Project Manager",
+    "deadline": "Deadline",
+    "priority": "Priority",
+    "progress": "Progress",
+    "status": "Status",
+    "files": "Files",
+    "revisions": "Revisions",
+    "changeRequests": "Change Requests",
+    "chat": "Chat",
+    "requirement": "Requirement",
+    "timeline": "Timeline",
+    "overview": "Overview",
+    "details": "Details",
+    "myProjects": "My Projects",
+    "createProject": "Create Project",
+    "editProject": "Edit Project",
+    "archiveProject": "Archive Project",
+    "statuses": {
+      "NEW": "New",
+      "REQUIREMENT_GATHERING": "Requirement Gathering",
+      "DESIGN": "Design",
+      "DEVELOPMENT": "Development",
+      "TESTING": "Testing",
+      "REVIEW": "Review",
+      "REVISION": "Revision",
+      "COMPLETED": "Completed",
+      "ARCHIVED": "Archived"
+    },
+    "priorities": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High",
+      "URGENT": "Urgent"
+    }
+  },
+  "client": {
+    "title": "Client",
+    "all": "All Clients",
+    "new": "New Client",
+    "companyName": "Company Name",
+    "phone": "Phone",
+    "address": "Address",
+    "industry": "Industry",
+    "notes": "Notes",
+    "createClient": "Create Client",
+    "editClient": "Edit Client"
+  },
+  "revision": {
+    "title": "Revision",
+    "all": "All Revisions",
+    "new": "Submit Revision",
+    "revisionTitle": "Revision Title",
+    "description": "Description",
+    "priority": "Priority",
+    "attachments": "Attachments",
+    "submitRevision": "Submit Revision",
+    "statuses": {
+      "OPEN": "Open",
+      "IN_REVIEW": "In Review",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed",
+      "APPROVED": "Approved"
+    }
+  },
+  "changeRequest": {
+    "title": "Change Request",
+    "all": "All Change Requests",
+    "new": "Submit Change Request",
+    "crTitle": "CR Title",
+    "description": "Description",
+    "type": "Type",
+    "estimatedCost": "Estimated Cost",
+    "submitCR": "Submit CR",
+    "statuses": {
+      "SUBMITTED": "Submitted",
+      "REVIEWED": "Reviewed",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed"
+    },
+    "types": {
+      "new_feature": "New Feature",
+      "new_page": "New Page",
+      "new_module": "New Module",
+      "integration": "Integration"
+    }
+  },
+  "invoice": {
+    "title": "Invoice",
+    "all": "All Invoices",
+    "new": "Create Invoice",
+    "invoiceNumber": "Invoice Number",
+    "amount": "Amount",
+    "dueDate": "Due Date",
+    "paidAt": "Paid At",
+    "pdf": "PDF",
+    "statuses": {
+      "DRAFT": "Draft",
+      "UNPAID": "Unpaid",
+      "PARTIAL": "Partial",
+      "PAID": "Paid",
+      "OVERDUE": "Overdue"
+    }
+  },
+  "requirement": {
+    "title": "Requirement",
+    "businessGoals": "Business Goals",
+    "requestedFeatures": "Requested Features",
+    "references": "References",
+    "attachments": "Attachments",
+    "statuses": {
+      "DRAFT": "Draft",
+      "APPROVED": "Approved",
+      "LOCKED": "Locked"
+    }
+  },
+  "file": {
+    "title": "File",
+    "upload": "Upload File",
+    "download": "Download",
+    "category": "Category",
+    "version": "Version",
+    "categories": {
+      "SOURCE_CODE": "Source Code",
+      "ZIP": "ZIP",
+      "DOCUMENTATION": "Documentation",
+      "VIDEO_TUTORIAL": "Video Tutorial",
+      "LINK": "Link",
+      "DATABASE_BACKUP": "Database Backup",
+      "OTHER": "Other"
+    },
+    "versions": {
+      "V1": "V1",
+      "V2": "V2",
+      "V3": "V3",
+      "V4": "V4",
+      "V5": "V5",
+      "FINAL": "Final"
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "sendMessage": "Send Message",
+    "typeMessage": "Type a message...",
+    "noMessages": "No messages yet"
+  },
+  "cms": {
+    "title": "CMS",
+    "hero": "Hero",
+    "about": "About",
+    "services": "Services",
+    "footer": "Footer",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "menu": "Menu"
+  },
+  "article": {
+    "title": "Article",
+    "all": "All Articles",
+    "new": "Create Article",
+    "publish": "Publish",
+    "draft": "Draft",
+    "statuses": {
+      "DRAFT": "Draft",
+      "PUBLISHED": "Published",
+      "ARCHIVED": "Archived"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "all": "All Portfolios",
+    "new": "Add Portfolio",
+    "name": "Name",
+    "description": "Description",
+    "technologies": "Technologies",
+    "screenshots": "Screenshots",
+    "projectUrl": "Project URL"
+  },
+  "caseStudy": {
+    "title": "Case Study",
+    "all": "All Case Studies",
+    "new": "Create Case Study",
+    "problem": "Problem",
+    "solution": "Solution",
+    "result": "Result",
+    "metrics": "Metrics"
+  },
+  "resource": {
+    "title": "Resource",
+    "all": "All Resources",
+    "download": "Download"
+  },
+  "activity": {
+    "title": "Activity",
+    "all": "All Activities",
+    "login": "Login",
+    "logout": "Logout",
+    "projectCreated": "Project created",
+    "projectUpdated": "Project updated",
+    "revisionCreated": "Revision created",
+    "fileUploaded": "File uploaded"
+  },
+  "notification": {
+    "title": "Notification",
+    "all": "All Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications"
+  },
+  "seo": {
+    "title": "SEO",
+    "metaTitle": "Meta Title",
+    "metaDescription": "Meta Description",
+    "ogImage": "Open Graph Image",
+    "canonicalUrl": "Canonical URL"
+  },
+  "form": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "invalidUrl": "Invalid URL",
+    "minLength": "Minimum {min} characters",
+    "maxLength": "Maximum {max} characters",
+    "minValue": "Minimum value is {min}",
+    "maxValue": "Maximum value is {max}"
+  },
+  "pagination": {
+    "showing": "Showing {from} - {to} of {total}",
+    "page": "Page {page} of {totalPages}",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "empty": {
+    "noProjects": "No projects yet",
+    "noClients": "No clients yet",
+    "noInvoices": "No invoices yet",
+    "noRevisions": "No revisions yet",
+    "noChangeRequests": "No change requests yet",
+    "noArticles": "No articles yet",
+    "noPortfolios": "No portfolios yet",
+    "noNotifications": "No notifications",
+    "noActivity": "No activity",
+    "noSearchResults": "No search results"
+  },
+  "footer": {
+    "company": "Jhiro Digital Lab",
+    "tagline": "Digital product studio for modern businesses",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "resources": "Resources",
+    "contact": "Contact Us",
+    "followUs": "Follow Us",
+    "copyright": "All rights reserved"
+  },
+  "cta": {
+    "startProject": "Start Project",
+    "viewPortfolio": "View Portfolio",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "downloadNow": "Download Now"
+  }
+}

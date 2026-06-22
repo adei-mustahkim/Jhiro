@@ -338,7 +338,7 @@ export default async function HomePage() {
                     )}
                   </div>
                   <h3 className="mt-4 text-lg font-semibold text-slate-900">{project.name}</h3>
-                  <p className="mt-1 text-sm text-slate-500">{project.category || project.description}</p>
+                  <p className="mt-1 text-sm text-slate-500">{project.description}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {project.technologies?.map((tech) => (
                       <span

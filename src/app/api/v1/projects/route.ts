@@ -70,9 +70,7 @@ export async function GET(request: NextRequest) {
     // Transform group result to map for lookup
     const unreadNotifications = unreadMap.map((g) => ({
       userId: g.userId,
-      createdAt: g._max.createdAt,
-      // dummy link placeholder – we'll match by project later
-      link: ''
+      latestCreatedAt: g._max.createdAt,
     }));
 
     const projectsWithUnreadStatus = projects.map((project) => {
@@ -80,20 +78,15 @@ export async function GET(request: NextRequest) {
       let recipientUnreadSince: string | null = null;
       if (recipientId) {
         const unread = unreadNotifications.find(
-          (n) => n.userId === recipientId && n.link?.includes(project.id)
+          (n) => n.userId === recipientId
         );
-        if (unread) {
-          recipientUnreadSince = unread.createdAt.toISOString();
+        if (unread?.latestCreatedAt) {
+          recipientUnreadSince = unread.latestCreatedAt.toISOString();
         }
       }
       return {
         ...project,
-        chatThread: project.chatThread
-          ? {
-              ...project.chatThread,
-              recipientUnreadSince,
-            }
-          : null,
+        recipientUnreadSince,
       };
     });
 
